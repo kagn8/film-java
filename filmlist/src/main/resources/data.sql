@@ -1,0 +1,1 @@
+INSERT INTO movies (title, description, thumbnail, vote) VALUES ('Jesus', 'The story of Jesus will change you.','',10);
