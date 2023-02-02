@@ -1,1 +1,0 @@
-INSERT INTO movie (title,added, description,thumbnail, vote) VALUES ('Bible',1,'la bible','Jesus',20);
