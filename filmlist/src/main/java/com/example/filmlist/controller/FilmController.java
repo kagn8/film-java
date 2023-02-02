@@ -1,4 +1,4 @@
-package com.exemple.filmlist.controller;
+package com.example.filmlist.controller;
 
 import java.util.Optional;
 
@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.filmlist.repository.FilmRepository;
-import com.exemple.filmlist.models.Film;
+import com.example.filmlist.entity.Film;
 
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,11 +28,11 @@ public class FilmController {
 	}
 	
 	@RequestMapping("films/{id}")
-	public Film getById(@PathVariable int id) {
+	public Film getById(@PathVariable Long id) {
 		
 		Optional<Film> film = FilmRepo.findById(id);
 		
-		if (film.isEmpty()) {
+		if (!film.isPresent()) {
 			
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "item not found");
 		}
@@ -45,11 +45,11 @@ public class FilmController {
 		return FilmRepo.save(film);
 	}
 	
-	public Optional<Film> update(int id, Film film) {
+	public Optional<Film> update(Long id, Film film) {
 		
 		Optional<Film> foundFilm = FilmRepo.findById(id);
 		
-		if (foundFilm.isEmpty()) {
+		if (!foundFilm.isPresent()) {
 			
 			return Optional.empty();
 		}
@@ -61,11 +61,11 @@ public class FilmController {
 		return foundFilm;
 	}
 	
-	public Boolean delete(int id) {
+	public Boolean delete(Long id) {
 		
 		Optional<Film> foundFilm = FilmRepo.findById(id);
 		
-		if (foundFilm.isEmpty()) {
+		if (!foundFilm.isPresent()) {
 			
 			return false;
 		}

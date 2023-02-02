@@ -1,35 +1,39 @@
-package com.exemple.filmlist.models;
+package com.example.filmlist.entity;
 
 import java.util.ArrayList;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
+import jakarta.persistence.*;
 import org.hibernate.validator.constraints.NotBlank;
 
 
 @Entity
+@Table(name = "movie")
 public class Film {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@Column(name="id")
+	private Long id;
 	@NotBlank(message = "This field is required")
 	private String title;
-	private ArrayList<Long> favorite;
+/*	private ArrayList<Long> favorite;
 	private ArrayList<Long> watched;
-	private ArrayList<Long> rating;
+	private ArrayList<Long> rating;*/
+
+	@Column(name="added")
 	private Long added;
+	@Column(name="description")
 	private String description;
+	@Column(name="thumbnail")
 	private String thumbnail;
+	@Column(name="vote")
 	private Long vote;
 	
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getTitle() {
@@ -37,24 +41,6 @@ public class Film {
 	}
 	public void setTitle(String title) {
 		this.title = title;
-	}
-	public ArrayList<Long> getFavorite() {
-		return favorite;
-	}
-	public void setFavorite(ArrayList<Long> favorite) {
-		this.favorite = favorite;
-	}
-	public ArrayList<Long> getWatched() {
-		return watched;
-	}
-	public void setWatched(ArrayList<Long> watched) {
-		this.watched = watched;
-	}
-	public ArrayList<Long> getRating() {
-		return rating;
-	}
-	public void setRating(ArrayList<Long> rating) {
-		this.rating = rating;
 	}
 	public Long getAdded() {
 		return added;
